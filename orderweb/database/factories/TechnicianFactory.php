@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use Faker\Provider\bg_BG\PhoneNumber;
-use Faker\Provider\bn_BD\PhoneNumber as Bn_BDPhoneNumber;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,9 +17,10 @@ class TechnicianFactory extends Factory
     public function definition(): array
     {
         return [
-            'document'=> fake()->unique()->numberBetween(1000000000, 9999999999),
+            'document' => fake()->unique()->numberBetween(10000000000, 99),
             'name' => fake()->name(),
-            'phone' => fake()->phoneNumber()
+            'phone' => fake()->phoneNumber(),
+
         ];
     }
 }
