@@ -28,27 +28,28 @@
                        
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>24/7/2024</td>
-                        <td>Cll 4 # 5-15 barrio Sajonia</td>
-                        <td>Tulua</td>
-                        <td>observaciones</td>
-                        <td>causal</td>
-                        <td>
-                            <a href="#" title="Editar" class="btn btn-info btn-circle btn-sm">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                            <a href="#" title="confirmar" class="btn btn-confirm btn-circle btn-sm" 
-                            style="background-color: green; color: white">
-                                <i class="fas fa-check"></i>
-                            </a>
-                            <a href="#" title="Eliminar" 
-                                class="btn btn-danger btn-circle btn-sm" onclick="return remove()">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
+                    @foreach ($orders as $order)
+                        
+                
+                        <tr>
+                            <td>{{$order['id']}}</td>
+                            <td>{{$order['legalization_date']}}</td>
+                            <td>{{$order['address']}}</td>
+                            <td>{{$order['city']}}</td>
+                            <td>{{ optional($order->observation)->description ??''}}</td>
+                            <td>{{optional($order->causal)->description ??''}}</td>
+                            <td>
+                                <a href="{{ route('order.edit', $order['id']) }}" title="Editar" class="btn btn-info btn-circle btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+                                
+                                <a href="{{ route('order.destroy', $order['id']) }}" title="Eliminar" 
+                                    class="btn btn-danger btn-circle btn-sm" onclick="return remove()">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>        
         </div>

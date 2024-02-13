@@ -8,39 +8,55 @@
 
     <div class="row">
         <div class="col lg-12 mb-4">
-            <form action="" method="POST">
+            <form action="{{ route(}'order.store') }}" method="POST">
                 @csrf
                 <div class="row form-group">
                     <div class="col lg-12 mb-4">
-                        <label for="date">Fecha Leg</label>
-                        <input type="date" class="form-control" id="date" name="date" required>
+                        <label for="date">Fecha Legalización</label>
+                        <input type="date" class="form-control" id="legalization_date" name="legalization_date" required>
                     </div>
                    
                     <div class="col lg-12 mb-4">
                         <label for="text">Dirección</label>
-                        <input type="text" class="form-control" id="text" name="text" required>
+                        <input type="text" class="form-control" id="address" name="address" required>
                     </div>
 
                     <div class="col lg-12 mb-4">
                         <label for="text">Ciudad</label>
-                        <select name="city" class="form-control">
-                            <option value="1">Tulua</option>
-                            <option value="2">Buga</option>
-                            <option value="3">Cali</option>
+                        <select name="city" id="city" class="form-control">
+                            <option value="">Seleccione</option>
+                            @foreach ($observations as $observation)
+
+                            <option value="{{ $observation['id'] }}">
+                                {{ $observation['description']}}
+                            
+                            @endforeach
                         </select>
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col lg-6 mb-4">
                         <label for="text">observación</label>
-                        <select name="observation" class="form-control">
+                        <select name="observation_id" id="observation_id" class="form-control">
                             <option value="">observación</option>
+                            @foreach ($observations as $observation)
+
+                            <option value="{{ $observation['id'] }}">
+                                {{ $observation['description']}}
+                            
+                            @endforeach
                         </select>
                     </div>
                     <div class="col lg-6 mb-4">
                         <label for="text">Causal</label>
                         <select name="causal" class="form-control">
                             <option value="">Causal</option>
+                            @foreach ($causals as $causal)
+
+                            <option value="{{ $causal['id'] }}">
+                                {{ $causal['description']}}
+                            
+                            @endforeach
                         </select>
                     </div>
                 </div>
